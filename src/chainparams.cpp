@@ -14,6 +14,8 @@
 
 #include <chainparamsseeds.h>
 
+#include <arith_uint256.h>
+
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     CMutableTransaction txNew;
@@ -77,10 +79,10 @@ public:
         consensus.nSubsidyHalvingInterval = 210000;
         consensus.BIP16Exception = uint256S("0x00000000000002dc756eebf4f49723ed8d30cc28a5f108eb94b1ba88ac4f9c22");
         consensus.BIP34Height = 1;
-        consensus.BIP34Hash = uint256S("0x000000000000024b89b42a942fe0d9fea3bb44ab7bd1b19115dd6a759c0808b8");
+        consensus.BIP34Hash = uint256S("0x0000021b5e0b10d4d7a9566d195c65c093a95dd0653f3ba81f0084d010a8f46a");
         consensus.BIP65Height = 1; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         consensus.BIP66Height = 1; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
-        consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 1 * 1 * 60 * 60; // two weeks 3600sec
         consensus.nPowTargetSpacing = 1 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -118,10 +120,54 @@ public:
         pchMessageStart[3] = 0xd9;
         nDefaultPort = 23939;
         nPruneAfterHeight = 100000;
-
-        genesis = CreateGenesisBlock(1231006505, 2083236893, 0x1d00ffff, 1, 50 * COIN);
+         
+        genesis = CreateGenesisBlock(1231006505, 3344368, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
+/* if you want to make own genesis block
+// calculate Genesis Block
+         // Reset genesis
+         consensus.hashGenesisBlock = uint256S("0x");
+         std::cout << std::string("Begin calculating Mainnet Genesis Block:\n");
+         if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
+             LogPrintf("Calculating Mainnet Genesis Block:\n");
+             arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
+             uint256 hash;
+             genesis.nNonce = 0;
+             // This will figure out a valid hash and Nonce if you're
+             // creating a different genesis block:
+             // uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+             // hashTarget.SetCompact(genesis.nBits, &fNegative, &fOverflow).getuint256();
+             // while (genesis.GetHash() > hashTarget)
+             while (UintToArith256(genesis.GetHash()) > hashTarget)
+             {
+                 ++genesis.nNonce;
+                 if (genesis.nNonce == 0)
+                 {
+                     LogPrintf("NONCE WRAPPED, incrementing time");
+                     std::cout << std::string("NONCE WRAPPED, incrementing time:\n");
+                     ++genesis.nTime;
+                 }
+                 if (genesis.nNonce % 10000 == 0)
+                 {
+                     LogPrintf("Mainnet: nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
+                     // std::cout << strNetworkID << " nonce: " << genesis.nNonce << " time: " << genesis.nTime << " hash: " << genesis.GetHash().ToString().c_str() << "\n";
+                 }
+             }
+             std::cout << "Mainnet ---\n";
+             std::cout << "  nonce: " << genesis.nNonce <<  "\n";
+             std::cout << "   time: " << genesis.nTime << "\n";
+             std::cout << "   hash: " << genesis.GetHash().ToString().c_str() << "\n";
+             std::cout << "   merklehash: "  << genesis.hashMerkleRoot.ToString().c_str() << "\n";
+             // Mainnet --- nonce: 296277 time: 1390095618 hash: 000000bdd771b14e5a031806292305e563956ce2584278de414d9965f6ab54b0
+         }
+         std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
+*/
+
+
+        // LogPrintf("GenesisHash = %s",consensus.hashGenesisBlock.ToString());
+        printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+        // assert(consensus.hashGenesisBlock == uint256S("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000021b5e0b10d4d7a9566d195c65c093a95dd0653f3ba81f0084d010a8f46a"));
         assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
@@ -148,7 +194,7 @@ public:
 
         checkpointData = {
             {
-                { 0, uint256S("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f")},
+                { 0, uint256S("0x0000021b5e0b10d4d7a9566d195c65c093a95dd0653f3ba81f0084d010a8f46a")}
             }
         };
 
