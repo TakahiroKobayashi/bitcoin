@@ -79,7 +79,7 @@ public:
         consensus.nSubsidyHalvingInterval = 210000;
         consensus.BIP16Exception = uint256S("0x00000000000002dc756eebf4f49723ed8d30cc28a5f108eb94b1ba88ac4f9c22");
         consensus.BIP34Height = 1;
-        consensus.BIP34Hash = uint256S("0x0000021b5e0b10d4d7a9566d195c65c093a95dd0653f3ba81f0084d010a8f46a");
+        consensus.BIP34Hash = uint256S("0x000eaa97fe5b0246d8540758b61224afc24c8a9d90a8c8c23858cbec54a93f09");
         consensus.BIP65Height = 1; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         consensus.BIP66Height = 1; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
         consensus.powLimit = uint256S("0x00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
@@ -121,9 +121,10 @@ public:
         nDefaultPort = 23939;
         nPruneAfterHeight = 100000;
          
-        genesis = CreateGenesisBlock(1522731600, 3344368, 0x1f0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1522731600, 2045 , 0x1f0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
+/*
 // if you want to make own genesis block
 // calculate Genesis Block
          // Reset genesis
@@ -162,13 +163,13 @@ public:
              // Mainnet --- nonce: 296277 time: 1390095618 hash: 000000bdd771b14e5a031806292305e563956ce2584278de414d9965f6ab54b0
          }
          std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
-
+*/
 
 
         // LogPrintf("GenesisHash = %s",consensus.hashGenesisBlock.ToString());
         printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
         // assert(consensus.hashGenesisBlock == uint256S("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
-        assert(consensus.hashGenesisBlock == uint256S("0x0000021b5e0b10d4d7a9566d195c65c093a95dd0653f3ba81f0084d010a8f46a"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000eaa97fe5b0246d8540758b61224afc24c8a9d90a8c8c23858cbec54a93f09"));
         assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
@@ -195,7 +196,7 @@ public:
 
         checkpointData = {
             {
-                { 0, uint256S("0x0000021b5e0b10d4d7a9566d195c65c093a95dd0653f3ba81f0084d010a8f46a")}
+                { 0, uint256S("0x000eaa97fe5b0246d8540758b61224afc24c8a9d90a8c8c23858cbec54a93f09")}
             }
         };
 
