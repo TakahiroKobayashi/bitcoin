@@ -82,7 +82,7 @@ public:
         consensus.BIP34Hash = uint256S("0x0000021b5e0b10d4d7a9566d195c65c093a95dd0653f3ba81f0084d010a8f46a");
         consensus.BIP65Height = 1; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         consensus.BIP66Height = 1; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
-        consensus.powLimit = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit = uint256S("0x00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 1 * 1 * 60 * 60; // two weeks 3600sec
         consensus.nPowTargetSpacing = 1 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -121,9 +121,10 @@ public:
         nDefaultPort = 23939;
         nPruneAfterHeight = 100000;
          
-        genesis = CreateGenesisBlock(1231006505, 3344368, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1522731600, 3344368, 0x1f0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-/* if you want to make own genesis block
+
+// if you want to make own genesis block
 // calculate Genesis Block
          // Reset genesis
          consensus.hashGenesisBlock = uint256S("0x");
@@ -161,7 +162,7 @@ public:
              // Mainnet --- nonce: 296277 time: 1390095618 hash: 000000bdd771b14e5a031806292305e563956ce2584278de414d9965f6ab54b0
          }
          std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
-*/
+
 
 
         // LogPrintf("GenesisHash = %s",consensus.hashGenesisBlock.ToString());
