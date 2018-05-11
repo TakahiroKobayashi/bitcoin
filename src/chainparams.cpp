@@ -83,12 +83,12 @@ public:
         consensus.BIP65Height = 1; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         consensus.BIP66Height = 1; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
         consensus.powLimit = uint256S("0x00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 1 * 1 * 60 * 60; // two weeks 3600sec
-        consensus.nPowTargetSpacing = 1 * 60;
-        consensus.fPowAllowMinDifficultyBlocks = false;
+        consensus.nPowTargetTimespan = 1 * 1 * 60 * 60; // 14*24*60*60 two weeks -> 3600sec
+        consensus.nPowTargetSpacing = 1 * 60; // 10*60 -> 
+        consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 1916; // 95% of 2016
-        consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
+        consensus.nRuleChangeActivationThreshold = 54; // 95% of 2016 -> 90% of 60
+        consensus.nMinerConfirmationWindow = 60 ; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -202,14 +202,14 @@ public:
 
         chainTxData = ChainTxData{
             // Data as of block 0000000000000000002d6cca6761c99b3c2e936f9a0e304b7c7651a993f461de (height 506081).
-            1231006505, // * UNIX timestamp of last known number of transactions
+            1522731600, // * UNIX timestamp of last known number of transactions
             0,  // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the ChainStateFlushed debug.log lines)
-            0.1         // * estimated number of transactions per second after that timestamp
+            0.01         // * estimated number of transactions per second after that timestamp
         };
 
-        /* disable fallback fee on mainnet */
-        m_fallback_fee_enabled = false;
+        /* disable fallback fee on mainnet -> enable */
+        m_fallback_fee_enabled = true;
     }
 };
 
@@ -296,9 +296,9 @@ public:
 
         chainTxData = ChainTxData{
             // Data as of block 000000000000033cfa3c975eb83ecf2bb4aaedf68e6d279f6ed2b427c64caff9 (height 1260526)
-            1516903490,
-            17082348,
-            0.09
+            1522731600,
+            0,
+            0.01
         };
 
         /* enable fallback fee on testnet */
