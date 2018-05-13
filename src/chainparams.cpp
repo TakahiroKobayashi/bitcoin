@@ -104,10 +104,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1510704000; // November 15th, 2017.
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000f91c579d57cad4bc5278cc");
+        consensus.nMinimumChainWork = uint256S("0x00"); // KOBA init
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x0000000000000000005214481d2d96f898e3d5416e43359c145944a909d242e0"); //506067
+        consensus.defaultAssumeValid = uint256S("0x00"); // KOBA init
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -177,6 +177,7 @@ public:
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
+        vSeeds.emplace_back("prueba-semilla.org"); // Pieter Wuille, only supports x1, x5, x9, and xd
         vSeeds.emplace_back("tk2-254-36580.vs.sakura.ne.jp"); // Pieter Wuille, only supports x1, x5, x9, and xd
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,0);
