@@ -179,6 +179,7 @@ public:
         // release ASAP to avoid it where possible.
         vSeeds.emplace_back("prueba-semilla.org"); // Pieter Wuille, only supports x1, x5, x9, and xd
         vSeeds.emplace_back("tk2-254-36580.vs.sakura.ne.jp"); // Pieter Wuille, only supports x1, x5, x9, and xd
+        
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
