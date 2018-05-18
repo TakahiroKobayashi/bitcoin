@@ -80,8 +80,8 @@ public:
         consensus.BIP16Exception = uint256();
         consensus.BIP34Height = 10000000;
         consensus.BIP34Hash = uint256();
-        consensus.BIP65Height = 1; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
-        consensus.BIP66Height = 1; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
+        consensus.BIP65Height = 10000; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
+        consensus.BIP66Height = 10000; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
         consensus.powLimit = uint256S("0x00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 1 * 1 * 60 * 60; // 14*24*60*60 two weeks -> 3600sec
         consensus.nPowTargetSpacing = 1 * 60; // 10*60 -> 
@@ -203,10 +203,10 @@ public:
 
         chainTxData = ChainTxData{
             // Data as of block 0000000000000000002d6cca6761c99b3c2e936f9a0e304b7c7651a993f461de (height 506081).
-            1522731600, // * UNIX timestamp of last known number of transactions
+            0, // * UNIX timestamp of last known number of transactions
             0,  // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the ChainStateFlushed debug.log lines)
-            0.01         // * estimated number of transactions per second after that timestamp
+            0         // * estimated number of transactions per second after that timestamp
         };
 
         /* disable fallback fee on mainnet -> enable */
