@@ -82,7 +82,7 @@ public:
         consensus.BIP34Hash = uint256();
         consensus.BIP65Height = 10000; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         consensus.BIP66Height = 10000; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
-        consensus.powLimit = uint256S("0x00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit = uint256S("0x000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 1 * 1 * 60 * 60; // 14*24*60*60 two weeks -> 3600sec
         consensus.nPowTargetSpacing = 1 * 60; // 10*60 -> 
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -164,7 +164,6 @@ public:
          }
          std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
 */
-
 
         // LogPrintf("GenesisHash = %s",consensus.hashGenesisBlock.ToString());
         printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
